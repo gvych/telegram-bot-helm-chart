@@ -1,0 +1,11 @@
+
+helmDefaults:
+  tillerNamespace: kube-system
+
+environments:
+  default:
+
+releases:
+  - name: telegram-bot
+    chart: ./telegram-bot
+    namespace: prometheus

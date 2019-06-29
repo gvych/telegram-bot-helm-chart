@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Telegram-bot based on https://github.com/inCaller/prometheus_bot 
+name: telegram-bot
+version: 0.0.1

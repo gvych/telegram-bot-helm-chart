@@ -1,0 +1,34 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+telegram:
+  token: "3214341:safdlkj2er21SADF21lkjsaflk"
+  #chat_id: "-12321340" #not used at the moment
+
+releaseOverride: telegram-bot
+image:
+  pullPolicy: Always
+application:
+  track: stable
+  tier: web
+  migrateCommand:
+  initializeCommand:
+  secretName:
+  secretChecksum:
+service:
+  enabled: true
+  name: web
+  type: ClusterIP
+  url: http://my.host.com/
+  additionalHosts:
+  commonName:
+  externalPort: 9087
+  internalPort: 9087
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 8Mi

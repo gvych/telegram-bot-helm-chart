@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "trackableappname" . }}.config
+  labels:
+    app: {{ template "appname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  config.yaml: |-
+    telegram_token: "{{ .Values.telegram.token }}"
+    template_path: "/alert.tmpl"
+    time_zone: "UTC"
+    split_token: "|"
+    split_msg_byte: 4000
+  alert.tmpl: |-
+    {{ "{{" }} if eq .Status "firing" {{ "}}" }} <b>[PROBLEM]</b> {{ "{{" }} else {{ "}}" }} <b>[RECOVERY]</b> {{ "{{" }} end {{ "}}" }}
+
+    {{ "{{" }} index (index .Alerts 0).Annotations "message"{{ "}}" }}
